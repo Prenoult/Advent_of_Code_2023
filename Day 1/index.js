@@ -1,6 +1,6 @@
 // part #1
 const fs = require('fs');
-const input = fs.readFileSync('input.txt', 'utf8').split('\n');
+const input = fs.readFileSync('./Day 1/input.txt', 'utf8').split('\n');
 
 console.log('input size: ', input.length)
 
@@ -19,7 +19,7 @@ const res = input.reduce((acc, line) => {
 }, 0)
 
 // export result in file
-fs.writeFileSync('output.txt', res.toString(), 'utf8');
+fs.writeFileSync('./Day 1/output.txt', res.toString(), 'utf8');
 
 // part #2
 
@@ -82,4 +82,4 @@ const res2 = input.reduce((acc, line) => {
   return acc + calculateCalibrationValueForLineUpdated(line)
 }, 0)
 
-fs.writeFileSync('output2.txt', res2.toString(), 'utf8');
+fs.writeFileSync('./Day 1/output2.txt', res2.toString(), 'utf8');
