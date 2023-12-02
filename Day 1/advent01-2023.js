@@ -1,6 +1,5 @@
 // part #1
 const fs = require('fs');
-const { type } = require('os');
 const input = fs.readFileSync('input.txt', 'utf8').split('\n');
 
 console.log('input size: ', input.length)
