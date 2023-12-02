@@ -52,9 +52,21 @@ const getPossibleGamesIdsFromCubes = (games, cubes) => {
   }, 0)
 }
 
+const getPowerOfGameSetsFromCubes = (games) => {
+  return games.reduce((acc, game) => {
+    const cubesFromGame = getCubesFromGame(game);
+    const powerOfGameSet = cubesFromGame["red"] * cubesFromGame["green"] * cubesFromGame["blue"];
+    console.log("powerOfGameSet : ", powerOfGameSet)
+    return acc + powerOfGameSet;
+  }, 0)
+}
+
 getCubesFromGame(input[0]);
 const res = getPossibleGamesIdsFromCubes(input, { "red": 12, "green": 13, "blue": 14 });
 fs.writeFileSync('./Day 2/output.txt', res.toString(), 'utf8');
+
+const res2 = getPowerOfGameSetsFromCubes(input, { "red": 12, "green": 13, "blue": 14 });
+fs.writeFileSync('./Day 2/output2.txt', res2.toString(), 'utf8');
 
 module.exports = { getCubesFromGame };
 
