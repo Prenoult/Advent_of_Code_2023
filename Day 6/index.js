@@ -1,9 +1,6 @@
-const { time } = require('console');
 const fs = require('fs');
 const input = fs.readFileSync('./Day 6/input.txt', 'utf8').split('\n');
 input.pop();
-
-// console.log(input)
 
 const getTimeWithDistance = (input) => {
   const times = input[0].replace(/^.*: /, '').split(' ').filter((element) => element !== '');
@@ -28,7 +25,6 @@ const getNumberOfWins = (time, distance) => {
 
 const timeWithDistance = getTimeWithDistance(input);
 const res = timeWithDistance.reduce((acc, curr) => {
-  console.log("acc : ", acc)
   const [time, distance] = curr;
   if (acc === 0) {
     return getNumberOfWins(time, distance);
@@ -37,3 +33,20 @@ const res = timeWithDistance.reduce((acc, curr) => {
 }, 0)
 
 fs.writeFileSync('./Day 6/output.txt', res.toString(), 'utf8');
+
+// part #2
+const getTimeWithDistanceForOne = (input) => {
+  const times = input[0].replace(/^.*: /, '').split(' ').filter((element) => element !== '');
+  const distances = input[1].replace(/^.*: /, '').split(' ').filter((element) => element !== '');
+  const time = parseInt(times.reduce((acc, curr) => {
+    return acc + curr;
+  }))
+  const distance = parseInt(distances.reduce((acc, curr) => {
+    return acc + curr;
+  }))
+  return [time, distance];
+}
+
+const timeWithDistanceForOne = getTimeWithDistanceForOne(input);
+const res2 = getNumberOfWins(timeWithDistanceForOne[0], timeWithDistanceForOne[1]);
+fs.writeFileSync('./Day 6/output2.txt', res2.toString(), 'utf8');
