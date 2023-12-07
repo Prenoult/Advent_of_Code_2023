@@ -2,7 +2,9 @@ const {
   getHandAndBid,
   getHandType,
   compareHands,
-  getTotalWinnings
+  compareHands2,
+  getTotalWinnings,
+  getTotalWinnings2
 } = require('./index');
 const fs = require('fs');
 const input = fs.readFileSync('./Day 7/input_test.txt', { encoding: 'utf-8' }).split('\n');
@@ -41,6 +43,14 @@ test('KK677 > KTJJT', () => {
   expect(compareHands('KTJJT', 'KK677')).toBe(-1);
 });
 
+test('T55J5 < KTJJT', () => {
+  expect(compareHands2('T55J5', 'KTJJT')).toBe(-1);
+});
+
 test('Example result', () => {
   expect(getTotalWinnings(inputProcessed)).toBe(6440);
+})
+
+test('Example result part2', () => {
+  expect(getTotalWinnings2(inputProcessed)).toBe(5905);
 })
