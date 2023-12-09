@@ -20,7 +20,7 @@ const getNextSequence = (sequence) => {
   return nextSequence;
 }
 
-const calculateNextTerm = (sequence) => {
+const calculateNextTerm = (sequence, isBackward) => {
   let nextSeq = getNextSequence(sequence);
   const res = [sequence]
   while (!nextSeq.every(number => number === 0)) {
@@ -29,6 +29,9 @@ const calculateNextTerm = (sequence) => {
   }
   res.push(nextSeq)
   res.reverse();
+  if (isBackward) {
+    return res.reduce((acc, curr) => parseInt(curr[0]) - parseInt(acc), 0)
+  }
   return res.reduce((acc, curr) => parseInt(acc) + parseInt(curr[curr.length - 1]), 0)
 }
 
@@ -41,3 +44,9 @@ const res_test = sequences_test.reduce(
 
 const res = sequences.reduce((acc, sequence) => parseInt(acc) + calculateNextTerm(sequence), 0);
 fs.writeFileSync('./Day 9/output.txt', res.toString());
+
+const res2 = sequences.reduce(
+  (acc, sequence) => parseInt(acc) + calculateNextTerm(sequence, true),
+  0
+);
+fs.writeFileSync('./Day 9/output2.txt', res2.toString());
